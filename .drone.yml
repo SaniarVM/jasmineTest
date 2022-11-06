@@ -9,8 +9,8 @@ steps:
   - name: dockersock
     path: /var/run/docker.sock
   commands:
-  - docker ps -a
-  - ls /var/run/
+  - |
+    docker run --rm ubuntu /bin/bash -c "ls"
 
 volumes:
 - name: dockersock
