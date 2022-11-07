@@ -4,15 +4,31 @@ type: docker
 name: scp
 
 steps:
-  - name: drone__files_copy
-    image: appleboy/drone-scp
-    settings:
-      host: 192.168.1.31
-      username: dev
-      password: develop
-      port: 22
-      target: /drone/src/
-      source: drone/*
+
+- name: test
+  image: docker
+  volumes:
+  - name: dockersock
+    path: /var/run/docker.sock
+  commands:
+  - sh drone-scp.sh
+
+volumes:
+- name: dockersock
+  host:
+    path: /var/run/docker.sock
+
+
+# steps:
+#   - name: drone__files_copy
+#     image: appleboy/drone-scp
+#     settings:
+#       host: 192.168.1.31
+#       username: dev
+#       password: develop
+#       port: 22
+#       target: /drone/src/
+#       source: drone/*
 
 # ---
 # kind: pipeline
@@ -43,20 +59,6 @@ steps:
 # ---
 # kind: pipeline
 # name: default
-
-# steps:
-# - name: test
-#   image: docker
-#   volumes:
-#   - name: dockersock
-#     path: /var/run/docker.sock
-#   commands:
-#   - docker ps -a
-
-# volumes:
-# - name: dockersock
-#   host:
-#     path: /var/run/docker.sock
 
 # ---
 # kind: pipeline
