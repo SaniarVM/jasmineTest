@@ -5,8 +5,8 @@
   -e SCP_USERNAME=dev \
   -e SCP_PORT=22 \
   -e SCP_KEY_PATH="~/.ssh/id_rsa" \
-  -e SCP_SOURCE=README.md \
-  -e SCP_TARGET=/drone/src/ \
+  -e SCP_SOURCE= /var/run/ \
+  -e SCP_TARGET=/home/ \
   -v $(pwd):$(pwd) \
   -w $(pwd) \
   appleboy/drone-scp
