@@ -9,7 +9,7 @@ steps:
     settings:
       host: 192.168.1.31
       username: dev
-      password: 
+      password: develop
       port: 22
       target: /drone/src/
       source: drone/*
