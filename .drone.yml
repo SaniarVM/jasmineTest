@@ -1,21 +1,18 @@
 ---
 kind: pipeline
-name: default
+type: docker
+name: scp
 
 steps:
-- name: test
-  image: docker
-  volumes:
-  - name: dockersock
-    path: /var/run/docker.sock
-  commands:
-  - |
-    docker run --rm ubuntu /bin/bash -c "ls"
-
-volumes:
-- name: dockersock
-  host:
-    path: /var/run/docker.sock
+  - name: drone__files_copy
+    image: appleboy/drone-scp
+    settings:
+      host: 192.168.1.31
+      username: dev
+      password: 
+      port: 22
+      target: /drone/src/
+      source: drone/*
 
 # ---
 # kind: pipeline
